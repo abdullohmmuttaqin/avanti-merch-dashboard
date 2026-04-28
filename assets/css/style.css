@@ -1,0 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #0f0f0f;
+    color: white;
+}
+
+.hero {
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url('../images/banner.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 20px 60px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.logo {
+    font-size: 32px;
+    color: #ff3c3c;
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.nav-links li a:hover {
+    color: #ff3c3c;
+}
+
+.hero-content {
+    margin-top: 150px;
+    max-width: 600px;
+}
+
+.hero-content h2 {
+    font-size: 55px;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    color: #d1d1d1;
+}
+
+.shop-btn {
+    display: inline-block;
+    padding: 15px 35px;
+    background: #ff3c3c;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.shop-btn:hover {
+    background: #cc0000;
+}
