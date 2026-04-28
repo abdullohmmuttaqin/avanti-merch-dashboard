@@ -10,10 +10,10 @@
 </head>
 <body>
 
-    <!-- ========= HERO SECTION / LANDING BANNER ========= -->
+    <!-- ===== BAGIAN HERO / BANNER UTAMA ===== -->
     <header class="hero">
 
-        <!-- Navigation Bar -->
+        <!-- Menu navigasi utama -->
         <nav class="navbar">
             <h1 class="logo">AVANTI MERCH</h1>
 
@@ -37,7 +37,22 @@
 
     <!-- ========= PRODUCT SECTION ========= -->
     <section class="products">
-        
+
+        <!-- Section Title -->
+        <h2 class="section-title">Produk Unggulan</h2>
+
+        <!-- Product Card Container -->
+        <div class="product-container">
+
+            <!-- Product Card 1 -->
+            <div class="product-card">
+                <img src="assets/images/RR1.jpg" alt="T-shirt RR1">
+                <h3>T-shirt Rebelliion Rose</h3>
+                <p>Rp195.000</p>
+                <a href="#" class="buy-btn">Beli Sekarang</a>
+            </div>
+        </div>
+
     </section>
 
 </body>
