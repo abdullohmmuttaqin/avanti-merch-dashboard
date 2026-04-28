@@ -79,3 +79,73 @@ body {
 .shop-btn:hover {
     background: #cc0000;
 }
+
+/* ===== PRODUCT SECTION ===== */
+.products {
+    padding: 80px 10%;
+    background: #111;
+}
+
+/* Judul section */
+.section-title {
+    text-align: center;
+    font-size: 36px;
+    color: white;
+    margin-bottom: 50px;
+}
+
+/* Container kumpulan card */
+.product-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* Kotak product */
+.product-card {
+    background: #1b1b1b;
+    width: 280px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    padding-bottom: 20px;
+    transition: 0.3s;
+}
+
+/* Hover effect */
+.product-card:hover {
+    transform: translateY(-8px);
+}
+
+/* Gambar produk */
+.product-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+/* Nama produk */
+.product-card h3 {
+    color: white;
+    font-size: 22px;
+    margin: 25px 15 12px;
+}
+
+/* Harga produk */
+.product-card p {
+    color: #ff4d4d;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+/* Tombol beli */
+.buy-btn {
+    background: #ff4d4d;
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
