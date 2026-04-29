@@ -1,8 +1,22 @@
 <?php
+// ===============================
+// MEMULAI SESSION LOGIN
+// ===============================
+session_start();
+
+// kalau admin belum login, lempar ke login page
+if (!isset($_SESSION['admin_login'])) {
+    header("Location: login.php");
+    exit;
+}
+
+// memanggil koneksi database
 include '../config/database.php';
 
-global $conn;
 
+// ===============================
+// SIMPAN PRODUK BARU
+// ===============================
 if (isset($_POST['simpan'])) {
 
     $nama = $_POST['nama_produk'];
@@ -18,8 +32,41 @@ if (isset($_POST['simpan'])) {
         '$kategori'
     )");
 
+    header("Location: index.php?status=sukses");
+    exit;
+}
+
+
+// ===============================
+// HAPUS PRODUK
+// ===============================
+if (isset($_GET['hapus'])) {
+
+    $id_hapus = $_GET['hapus'];
+
+    mysqli_query($conn, "DELETE FROM products WHERE id='$id_hapus'");
+
+    header("Location: index.php?status=hapus");
+    exit;
+}
+
+
+// ===============================
+// ALERT STATUS
+// ===============================
+if (isset($_GET['status']) && $_GET['status'] == 'sukses') {
     echo "<script>alert('Produk berhasil ditambahkan!');</script>";
 }
+
+if (isset($_GET['status']) && $_GET['status'] == 'hapus') {
+    echo "<script>alert('Produk berhasil dihapus!');</script>";
+}
+
+
+// ===============================
+// AMBIL SEMUA DATA PRODUK
+// ===============================
+$semua_produk = mysqli_query($conn, "SELECT * FROM products ORDER BY id DESC");
 ?>
 
 <!DOCTYPE html>
@@ -28,28 +75,80 @@ if (isset($_POST['simpan'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel - AVANTI MERCH</title>
+    <title>Admin Dashboard - AVANTI MERCH</title>
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
 <body>
 
     <section class="products">
-        <h2 class="section-title">Admin Tambah Produk</h2>
+        <h2 class="section-title">AVANTI ADMIN DASHBOARD</h2>
 
-        <div style="max-width:600px; margin:auto; background:#1b1b1b; padding:30px; border-radius:12px;">
+        <div class="admin-wrapper">
 
-            <form method="POST">
-                <input type="text" name="nama_produk" placeholder="Nama Produk" required style="width:100%; padding:12px; margin-bottom:15px;">
+            <?php
+            $jumlah_produk = mysqli_num_rows($semua_produk);
+            ?>
 
-                <input type="number" name="harga" placeholder="Harga Produk" required style="width:100%; padding:12px; margin-bottom:15px;">
+            <!-- STATISTIK -->
+            <div class="stats-box">
+                <div class="stat-card">
+                    <h3>Total Produk</h3>
+                    <h1><?php echo $jumlah_produk; ?></h1>
+                </div>
 
-                <input type="text" name="gambar" placeholder="Nama File Gambar (contoh: sid1.jpg)" required style="width:100%; padding:12px; margin-bottom:15px;">
+                <div class="stat-card">
+                    <h3>Status Database</h3>
+                    <h1>ON</h1>
+                </div>
+            </div>
 
-                <input type="text" name="kategori" placeholder="Kategori Produk" required style="width:100%; padding:12px; margin-bottom:20px;">
+            <!-- FORM TAMBAH -->
+            <div class="admin-box">
+                <h2 style="margin-bottom:20px;">Tambah Produk Baru</h2>
 
-                <button type="submit" name="simpan" class="buy-btn" style="border:none; cursor:pointer;">Simpan Produk</button>
-            </form>
+                <form method="POST" class="admin-form">
+                    <input type="text" name="nama_produk" placeholder="Nama Produk" required>
+                    <input type="number" name="harga" placeholder="Harga Produk" required>
+                    <input type="text" name="gambar" placeholder="Nama File Gambar (contoh: sid1.jpg)" required>
+                    <input type="text" name="kategori" placeholder="Kategori Produk" required>
+
+                    <button type="submit" name="simpan" class="admin-btn">Simpan Produk</button>
+                </form>
+            </div>
+
+            <!-- TABEL PRODUK -->
+            <div class="admin-box">
+                <h2 style="margin-bottom:20px;">Daftar Semua Produk</h2>
+
+                <table class="admin-table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Gambar</th>
+                        <th>Nama Produk</th>
+                        <th>Harga</th>
+                        <th>Kategori</th>
+                        <th>Aksi</th>
+                    </tr>
+
+                    <?php while ($row = mysqli_fetch_assoc($semua_produk)) { ?>
+                        <tr>
+                            <td><?php echo $row['id']; ?></td>
+                            <td><img src="../assets/images/<?php echo $row['gambar']; ?>" width="70"></td>
+                            <td><?php echo $row['nama_produk']; ?></td>
+                            <td>Rp<?php echo number_format($row['harga']); ?></td>
+                            <td><?php echo $row['kategori']; ?></td>
+                            <td>
+                                <a class="delete-btn"
+                                    href="index.php?hapus=<?php echo $row['id']; ?>"
+                                    onclick="return confirm('Yakin hapus produk ini?')">
+                                    Hapus
+                                </a>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </table>
+            </div>
 
         </div>
     </section>
