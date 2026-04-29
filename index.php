@@ -46,11 +46,28 @@
 
             <!-- Product Card 1 -->
             <div class="product-card">
-                <img src="assets/images/RR1.jpg" alt="T-shirt RR1">
-                <h3>T-shirt Rebelliion Rose</h3>
+                <img src="assets/images/rr1.jpg" alt="T-shirt RR1">
+                <h3>T-shirt Rebellion Rose</h3>
                 <p>Rp195.000</p>
                 <a href="#" class="buy-btn">Beli Sekarang</a>
             </div>
+
+            <!-- Product Card 2 -->
+            <div class="product-card">
+                <img src="assets/images/sid1.jpg" alt="T-shirt SID1">
+                <h3>T-shirt Superman Is Dead</h3>
+                <p>Rp205.000</p>
+                <a href="#" class="buy-btn">Beli Sekarang</a>
+            </div>
+
+            <!-- Product Card 3 -->
+            <div class="product-card">
+                <img src="assets/images/gd1.jpg" alt="T-shirt GD1">
+                <h3>T-shirt Green Day</h3>
+                <p>Rp795.000</p>
+                <a href="#" class="buy-btn">Beli Sekarang</a>
+            </div>
+            
         </div>
 
     </section>
