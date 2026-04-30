@@ -81,16 +81,24 @@ $semua_produk = mysqli_query($conn, "SELECT * FROM products ORDER BY id DESC");
 
 <body>
 
-    <section class="products">
-        <h2 class="section-title">AVANTI ADMIN DASHBOARD</h2>
+    <div class="dashboard-layout">
 
-        <div class="admin-wrapper">
+        <!-- SIDEBAR MENU KIRI -->
+        <div class="sidebar-admin">
+            <h2>AVANTI PANEL</h2>
 
-            <?php
-            $jumlah_produk = mysqli_num_rows($semua_produk);
-            ?>
+            <a href="index.php">📦 Dashboard Produk</a>
+            <a href="../index.php" target="_blank">🌐 Lihat Homepage</a>
+            <a href="logout.php">🚪 Logout</a>
+        </div>
 
-            <!-- STATISTIK -->
+        <!-- AREA KONTEN KANAN -->
+        <div class="main-admin-content">
+
+            <?php $jumlah_produk = mysqli_num_rows($semua_produk); ?>
+
+            <h2 class="admin-title">AVANTI ADMIN DASHBOARD</h2>
+
             <div class="stats-box">
                 <div class="stat-card">
                     <h3>Total Produk</h3>
@@ -103,7 +111,6 @@ $semua_produk = mysqli_query($conn, "SELECT * FROM products ORDER BY id DESC");
                 </div>
             </div>
 
-            <!-- FORM TAMBAH -->
             <div class="admin-box">
                 <h2 style="margin-bottom:20px;">Tambah Produk Baru</h2>
 
@@ -117,7 +124,6 @@ $semua_produk = mysqli_query($conn, "SELECT * FROM products ORDER BY id DESC");
                 </form>
             </div>
 
-            <!-- TABEL PRODUK -->
             <div class="admin-box">
                 <h2 style="margin-bottom:20px;">Daftar Semua Produk</h2>
 
@@ -151,7 +157,7 @@ $semua_produk = mysqli_query($conn, "SELECT * FROM products ORDER BY id DESC");
             </div>
 
         </div>
-    </section>
+    </div>
 
 </body>
 
