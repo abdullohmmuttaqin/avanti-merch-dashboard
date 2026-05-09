@@ -36,8 +36,8 @@ if (isset($_POST['login'])) {
             <h1>AVANTI ADMIN</h1>
 
             <form method="POST">
-                <input type="text" name="username" placeholder="Username Admin" required>
-                <input type="password" name="password" placeholder="Password Admin" required>
+                <input type="text" name="username" placeholder="Masukan Username" required>
+                <input type="password" name="password" placeholder="Masukan Password" required>
                 <button type="submit" name="login">LOGIN SEKARANG</button>
             </form>
         </div>
