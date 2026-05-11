@@ -6,7 +6,7 @@
 
     <div class="product-detail">
         <div class="product-image">
-            <img src="../assets/images/product1.jpg" alt="Product">
+            <img src="../assets/images/sid1.jpg" alt="Product">
         </div>
 
         <div class="product-info">

@@ -290,30 +290,47 @@ footer h3 {
 
 .product-detail {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
+    grid-template-columns: 500px 1fr;
+    gap: 60px;
     align-items: center;
+    margin-top: 40px;
 }
 
 .product-image img {
     width: 100%;
+    height: 500px;
+    object-fit: cover;
     border-radius: 18px;
     border: 1px solid #151515;
 }
 
 .product-info h1 {
-    font-size: 42px;
+    font-size: 56px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.price {
+    color: #ff4d4d;
+    font-size: 32px;
+    font-weight: 900;
     margin-bottom: 20px;
 }
 
 .description {
     color: #c8c8c8;
     line-height: 1.8;
-    margin: 20px 0;
-    font-size: 17px;
+    font-size: 20px;
+    max-width: 700px;
+    margin-bottom: 30px;
 }
 
 .product-actions {
     display: flex;
-    gap: 15px;
+    gap: 18px;
+}
+
+.product-actions .btn {
+    padding: 16px 28px;
+    font-size: 16px;
 }
