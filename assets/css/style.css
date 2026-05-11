@@ -3,6 +3,9 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', sans-serif;
+}
+
+html {
     scroll-behavior: smooth;
 }
 
@@ -11,23 +14,23 @@ body {
     color: white;
 }
 
-/* ================= NAVBAR ================= */
+/* NAVBAR */
 .navbar {
     position: sticky;
     top: 0;
     z-index: 999;
     width: 100%;
-    background: rgba(0, 0, 0, 0.88);
-    backdrop-filter: blur(8px);
-    padding: 16px 70px;
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(10px);
+    padding: 18px 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #101010;
+    border-bottom: 1px solid #111;
 }
 
 .logo {
-    font-size: 26px;
+    font-size: 28px;
     font-weight: 900;
     color: #ff4d4d;
     letter-spacing: 2px;
@@ -35,7 +38,7 @@ body {
 
 .navbar ul {
     display: flex;
-    gap: 40px;
+    gap: 38px;
     list-style: none;
 }
 
@@ -44,16 +47,16 @@ body {
     color: white;
     font-size: 15px;
     font-weight: 600;
-    transition: .3s;
+    transition: 0.3s;
 }
 
 .navbar ul li a:hover {
     color: #ff4d4d;
 }
 
-/* ================= HERO ================= */
+/* HERO */
 .hero {
-    height: 100vh;
+    min-height: 100vh;
     background: url('../images/banner.JPG') center/cover no-repeat;
     position: relative;
     display: flex;
@@ -64,7 +67,7 @@ body {
 .overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.60);
+    background: rgba(0, 0, 0, 0.62);
 }
 
 .hero-text {
@@ -74,17 +77,19 @@ body {
 }
 
 .hero-text h1 {
-    font-size: 78px;
+    font-size: 64px;
     line-height: 1;
     font-weight: 900;
-    margin-bottom: 25px;
+    margin-bottom: 22px;
 }
 
 .hero-text p {
-    font-size: 21px;
-    color: #d4d4d4;
+    font-size: 18px;
+    color: #d2d2d2;
     line-height: 1.6;
-    margin-bottom: 35px;
+    margin-bottom: 32px;
+    max-width: 600px;
+
 }
 
 .hero-text a {
@@ -92,52 +97,55 @@ body {
     text-decoration: none;
     background: #ff4d4d;
     color: white;
-    padding: 15px 35px;
+    padding: 13px 28px;
     border-radius: 10px;
     font-weight: bold;
-    transition: .3s;
+    transition: 0.3s;
+    font-size: 15px;
+
 }
 
 .hero-text a:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
 }
 
-/* ================= FEATURE ================= */
+/* FEATURE */
 .feature {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    padding: 35px 90px;
-    background: #070707;
+    padding: 35px 70px;
+    background: #080808;
 }
 
 .feature div {
     background: #0d0d0d;
-    border: 1px solid #121212;
+    border: 1px solid #151515;
     border-radius: 14px;
-    padding: 22px;
+    padding: 16px;
     text-align: center;
-    font-size: 15px;
-    color: #d5d5d5;
+    font-size: 14px;
+    color: #d0d0d0;
     font-weight: 600;
+    font-size: 13px;
 }
 
-/* ================= SECTION ================= */
+/* SECTION */
 .section {
-    padding: 80px 70px;
+    padding: 55px 70px;
 }
 
 .section h2 {
-    font-size: 38px;
-    margin-bottom: 40px;
+    font-size: 42px;
     font-weight: 900;
+    margin-bottom: 28px;
 }
 
-/* ================= PRODUCT GRID ================= */
+/* PRODUCT GRID */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 28px;
+    gap: 22px;
 }
 
 .card {
@@ -145,21 +153,22 @@ body {
     border: 1px solid #151515;
     border-radius: 18px;
     overflow: hidden;
-    transition: .3s;
+    transition: 0.3s;
     display: flex;
     flex-direction: column;
+    min-height: 430px;
 }
 
 .card:hover {
     transform: translateY(-6px);
-    border-color: #222;
+    border-color: #252525;
 }
 
 .img-box {
     width: 100%;
     height: 220px;
-    overflow: hidden;
     background: #111;
+    overflow: hidden;
 }
 
 .img-box img {
@@ -172,104 +181,103 @@ body {
     padding: 18px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
     flex: 1;
+    gap: 12px;
 }
 
 .card-body h3 {
-    font-size: 16px;
-    line-height: 1.3;
-    min-height: 60px;
+    font-size: 15px;
+    min-height: 42px;
 }
 
 .price {
     color: #ff4d4d;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 900;
 }
 
 .tag {
     display: inline-block;
     width: fit-content;
-    background: #121212;
+    background: #151515;
+    color: #bdbdbd;
     padding: 7px 14px;
     border-radius: 20px;
     font-size: 12px;
-    color: #bdbdbd;
 }
 
 .btn {
     margin-top: auto;
     text-align: center;
     text-decoration: none;
-    background: #171717;
+    background: #181818;
     color: white;
-    padding: 11px;
+    padding: 10px;
     border-radius: 10px;
-    font-weight: bold;
-    transition: .3s;
+    font-weight: 700;
+    transition: 0.3s;
+    font-size: 14px;
+
 }
 
 .btn:hover {
     background: #ff4d4d;
 }
 
-/* ================= CATEGORY ================= */
+/* CATEGORY */
 .category-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 25px;
 }
 
-#category {
-    padding-bottom: 120px;
-}
-
 .cat {
-    height: 180px;
+    height: 140px;
     background: #0b0b0b;
-    border: 1px solid #141414;
+    border: 1px solid #151515;
     border-radius: 18px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 15px;
-    font-weight: 800;
     text-align: center;
-    transition: .3s;
+    font-weight: 800;
+    padding: 20px;
+    transition: 0.3s;
+    font-size: 16px;
+
 }
 
 .cat:hover {
     transform: translateY(-4px);
-    background: #111;
+    background: #121212;
 }
 
-/* ================= ABOUT ================= */
+/* ABOUT */
 .about {
-    padding: 90px;
-    background: #070707;
+    padding: 90px 70px;
+    background: #080808;
     text-align: center;
 }
 
 .about h2 {
-    font-size: 46px;
-    margin-bottom: 20px;
+    font-size: 48px;
+    margin-bottom: 18px;
 }
 
 .about p {
     max-width: 850px;
     margin: auto;
-    color: #c8c8c8;
+    color: #c4c4c4;
     font-size: 18px;
     line-height: 1.8;
 }
 
-/* ================= FOOTER ================= */
+/* FOOTER */
 footer {
     text-align: center;
     padding: 35px;
     background: #030303;
-    border-top: 1px solid #101010;
+    border-top: 1px solid #111;
 }
 
 footer h3 {
