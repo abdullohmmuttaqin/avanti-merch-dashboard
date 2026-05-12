@@ -451,3 +451,64 @@ footer h3 {
     margin-top: 25px;
     background: #ff4d4d;
 }
+
+/* ================= CHECKOUT PAGE ================= */
+.checkout-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.checkout-form,
+.checkout-summary {
+    background: #0b0b0b;
+    border: 1px solid #151515;
+    border-radius: 18px;
+    padding: 30px;
+}
+
+.checkout-form h3,
+.checkout-summary h3 {
+    font-size: 30px;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    background: #111;
+    border: 1px solid #222;
+    color: white;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.place-order-btn {
+    width: 100%;
+    margin-top: 20px;
+    background: #ff4d4d;
+    font-size: 16px;
+}
+
+.checkout-summary {
+    position: sticky;
+    top: 100px;
+}
