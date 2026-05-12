@@ -334,3 +334,120 @@ footer h3 {
     padding: 16px 28px;
     font-size: 16px;
 }
+
+/* ================= CART PAGE ================= */
+.cart-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cart-item {
+    background: #0b0b0b;
+    border: 1px solid #151515;
+    border-radius: 18px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.cart-item img {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.cart-info {
+    flex: 1;
+}
+
+.cart-info h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.cart-info p {
+    color: #bdbdbd;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.cart-qty {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.cart-qty button {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: #171717;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.remove-btn {
+    border: none;
+    background: #222;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.remove-btn:hover {
+    background: #ff4d4d;
+}
+
+.cart-summary {
+    background: #0b0b0b;
+    border: 1px solid #151515;
+    border-radius: 18px;
+    padding: 30px;
+    position: sticky;
+    top: 100px;
+}
+
+.cart-summary h3 {
+    font-size: 28px;
+    margin-bottom: 25px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    color: #d4d4d4;
+}
+
+.total {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    border-top: 1px solid #222;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.checkout-btn {
+    display: block;
+    margin-top: 25px;
+    background: #ff4d4d;
+}
