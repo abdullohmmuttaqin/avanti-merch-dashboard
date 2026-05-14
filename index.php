@@ -53,20 +53,31 @@ $latest_produk = mysqli_query($conn, "SELECT * FROM products ORDER BY id DESC LI
     <!-- LATEST -->
     <section class="section" id="latest">
         <h2>Latest Drops</h2>
+
         <div class="product-grid">
-            <?php while ($latest = mysqli_fetch_assoc($latest_produk)) { ?>
+            <?php while ($product = mysqli_fetch_assoc($latest_produk)) : ?>
                 <div class="card">
                     <div class="img-box">
-                        <img src="assets/images/<?php echo $latest['gambar']; ?>">
+                        <img src="assets/images/<?php echo $product['gambar']; ?>" alt="">
                     </div>
+
                     <div class="card-body">
-                        <h3><?php echo $latest['nama_produk']; ?></h3>
-                        <span class="price">Rp<?php echo number_format($latest['harga']); ?></span>
-                        <span class="tag"><?php echo $latest['kategori']; ?></span>
-                        <a href="#shop" class="btn">View Product</a>
+                        <h3><?php echo $product['nama_produk']; ?></h3>
+
+                        <p class="price">
+                            Rp<?php echo number_format($product['harga'], 0, ',', '.'); ?>
+                        </p>
+
+                        <span class="tag">
+                            <?php echo $product['kategori']; ?>
+                        </span>
+
+                        <a href="pages/product.php?id=<?php echo $product['id']; ?>" class="btn">
+                            View Product
+                        </a>
                     </div>
                 </div>
-            <?php } ?>
+            <?php endwhile; ?>
         </div>
     </section>
 
@@ -84,20 +95,31 @@ $latest_produk = mysqli_query($conn, "SELECT * FROM products ORDER BY id DESC LI
     <!-- SHOP -->
     <section class="section" id="shop">
         <h2>All Merchandise</h2>
+
         <div class="product-grid">
-            <?php while ($row = mysqli_fetch_assoc($all_produk)) { ?>
+            <?php while ($product = mysqli_fetch_assoc($all_produk)) : ?>
                 <div class="card">
                     <div class="img-box">
-                        <img src="assets/images/<?php echo $row['gambar']; ?>">
+                        <img src="assets/images/<?php echo $product['gambar']; ?>" alt="">
                     </div>
+
                     <div class="card-body">
-                        <h3><?php echo $row['nama_produk']; ?></h3>
-                        <span class="price">Rp<?php echo number_format($row['harga']); ?></span>
-                        <span class="tag"><?php echo $row['kategori']; ?></span>
-                        <a href="#" class="btn">Buy Now</a>
+                        <h3><?php echo $product['nama_produk']; ?></h3>
+
+                        <p class="price">
+                            Rp<?php echo number_format($product['harga'], 0, ',', '.'); ?>
+                        </p>
+
+                        <span class="tag">
+                            <?php echo $product['kategori']; ?>
+                        </span>
+
+                        <a href="pages/product.php?id=<?php echo $product['id']; ?>" class="btn">
+                            Buy Now
+                        </a>
                     </div>
                 </div>
-            <?php } ?>
+            <?php endwhile; ?>
         </div>
     </section>
 
