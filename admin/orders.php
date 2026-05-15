@@ -72,6 +72,7 @@ $query = mysqli_query($conn, "SELECT * FROM orders ORDER BY id DESC");
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Payment</th>
+                <th>Status</th>
                 <th>Total</th>
                 <th>Date</th>
                 <th>Action</th>
@@ -86,6 +87,7 @@ $query = mysqli_query($conn, "SELECT * FROM orders ORDER BY id DESC");
                     <td><?php echo $order['email']; ?></td>
                     <td><?php echo $order['phone']; ?></td>
                     <td><?php echo $order['notes']; ?></td>
+                    <td><?php echo ucfirst($order['status']); ?></td>
                     <td>Rp<?php echo number_format($order['total'], 0, ',', '.'); ?></td>
                     <td><?php echo $order['created_at']; ?></td>
                     <td>

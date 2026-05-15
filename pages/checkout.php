@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $payment = $_POST['payment'];
 
     $grand_total = $total + $shipping;
+    $status = 'pending';
 
     mysqli_query($conn, "INSERT INTO orders (
         nama_customer,
@@ -31,7 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         notes,
         subtotal,
         shipping,
-        total
+        total,
+        status
     ) VALUES (
         '$nama',
         '$email',
@@ -40,7 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         '$payment',
         '$total',
         '$shipping',
-        '$grand_total'
+        '$grand_total',
+        '$status'
     )");
 
     $order_id = mysqli_insert_id($conn);
@@ -141,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="summary-row total">
                 <span>Total</span>
                 <span>
-                    Rp<?php echo number_format($total + $shipping, 0, ',', '.'); ?>
+                    Rp<?php echo number_format($grand_total ?? ($total + $shipping), 0, ',', '.'); ?>
                 </span>
             </div>
         </div>
