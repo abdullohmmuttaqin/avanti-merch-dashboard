@@ -1,5 +1,6 @@
 <?php
 include '../config/database.php';
+/** @var mysqli $conn */
 
 $query = mysqli_query($conn, "SELECT * FROM orders ORDER BY id DESC");
 ?>
