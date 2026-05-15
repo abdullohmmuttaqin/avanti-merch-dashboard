@@ -1,3 +1,41 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = [];
+}
+
+/* UPDATE QTY */
+if (isset($_GET['action']) && isset($_GET['id'])) {
+    $id = $_GET['id'];
+
+    if (isset($_SESSION['cart'][$id])) {
+
+        if ($_GET['action'] == 'plus') {
+            $_SESSION['cart'][$id]['qty'] += 1;
+        }
+
+        if ($_GET['action'] == 'minus') {
+            $_SESSION['cart'][$id]['qty'] -= 1;
+
+            if ($_SESSION['cart'][$id]['qty'] <= 0) {
+                unset($_SESSION['cart'][$id]);
+            }
+        }
+
+        if ($_GET['action'] == 'remove') {
+            unset($_SESSION['cart'][$id]);
+        }
+    }
+
+    header("Location: cart.php");
+    exit;
+}
+
+$total = 0;
+$shipping = 25000;
+?>
+
 <?php include '../includes/header.php'; ?>
 <?php include '../includes/navbar.php'; ?>
 
@@ -8,64 +46,83 @@
 
         <div class="cart-items">
 
-            <div class="cart-item">
-                <img src="../assets/images/sid1.jpg" alt="Product">
-
-                <div class="cart-info">
-                    <h3>T-shirt Superman Is Dead</h3>
-                    <p>Official underground punk rock merchandise.</p>
-                    <span class="price">Rp305,000</span>
+            <?php if (empty($_SESSION['cart'])) : ?>
+                <div class="empty-cart">
+                    <h3>Cart is empty</h3>
+                    <p>Add some merch first 🤘</p>
+                    <a href="../index.php#shop" class="btn">Back To Shop</a>
                 </div>
 
-                <div class="cart-qty">
-                    <button>-</button>
-                    <span>1</span>
-                    <button>+</button>
-                </div>
+            <?php else : ?>
 
-                <button class="remove-btn">Remove</button>
-            </div>
+                <?php foreach ($_SESSION['cart'] as $item) : ?>
+                    <?php
+                    $subtotal = $item['harga'] * $item['qty'];
+                    $total += $subtotal;
+                    ?>
 
-            <div class="cart-item">
-                <img src="../assets/images/tos1.jpg" alt="Product">
+                    <div class="cart-card">
 
-                <div class="cart-info">
-                    <h3>T-shirt The Offspring</h3>
-                    <p>Premium cotton merch collection.</p>
-                    <span class="price">Rp850,000</span>
-                </div>
+                        <div class="cart-image">
+                            <img src="../assets/images/<?php echo $item['gambar']; ?>" alt="">
+                        </div>
 
-                <div class="cart-qty">
-                    <button>-</button>
-                    <span>1</span>
-                    <button>+</button>
-                </div>
+                        <div class="cart-info">
+                            <h3><?php echo $item['nama']; ?></h3>
+                            <p><?php echo $item['kategori']; ?></p>
 
-                <button class="remove-btn">Remove</button>
-            </div>
+                            <p class="price">
+                                Rp<?php echo number_format($item['harga'], 0, ',', '.'); ?>
+                            </p>
+                        </div>
+
+                        <div class="cart-controls">
+                            <a href="?action=minus&id=<?php echo $item['id']; ?>" class="qty-btn">-</a>
+
+                            <span><?php echo $item['qty']; ?></span>
+
+                            <a href="?action=plus&id=<?php echo $item['id']; ?>" class="qty-btn">+</a>
+
+                            <a href="?action=remove&id=<?php echo $item['id']; ?>" class="remove-btn">
+                                Remove
+                            </a>
+                        </div>
+
+                    </div>
+                <?php endforeach; ?>
+
+            <?php endif; ?>
 
         </div>
 
-        <div class="cart-summary">
-            <h3>Order Summary</h3>
+        <?php if (!empty($_SESSION['cart'])) : ?>
+            <div class="cart-summary">
+                <h3>Order Summary</h3>
 
-            <div class="summary-row">
-                <span>Subtotal</span>
-                <span>Rp1,155,000</span>
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span>Rp<?php echo number_format($total, 0, ',', '.'); ?></span>
+                </div>
+
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span>Rp<?php echo number_format($shipping, 0, ',', '.'); ?></span>
+                </div>
+
+                <hr>
+
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span>
+                        Rp<?php echo number_format($total + $shipping, 0, ',', '.'); ?>
+                    </span>
+                </div>
+
+                <a href="checkout.php" class="btn checkout-btn">
+                    Proceed to Checkout
+                </a>
             </div>
-
-            <div class="summary-row">
-                <span>Shipping</span>
-                <span>Rp25,000</span>
-            </div>
-
-            <div class="summary-row total">
-                <span>Total</span>
-                <span>Rp1,180,000</span>
-            </div>
-
-            <a href="checkout.php" class="btn checkout-btn">Proceed to Checkout</a>
-        </div>
+        <?php endif; ?>
 
     </div>
 </section>
