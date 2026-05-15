@@ -1,5 +1,6 @@
 <?php
 include '../config/database.php';
+/** @var mysqli $conn */
 
 if (!isset($_GET['id'])) {
     die("Order ID not found");
