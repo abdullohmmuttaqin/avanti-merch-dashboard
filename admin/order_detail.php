@@ -2,6 +2,20 @@
 include '../config/database.php';
 /** @var mysqli $conn */
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $order_id = $_POST['order_id'];
+    $status = $_POST['status'];
+
+    mysqli_query($conn, "
+        UPDATE orders 
+        SET status = '$status' 
+        WHERE id = '$order_id'
+    ");
+
+    header("Location: order_detail.php?id=" . $order_id);
+    exit;
+}
+
 if (!isset($_GET['id'])) {
     die("Order ID not found");
 }
@@ -103,7 +117,38 @@ $items_query = mysqli_query($conn, "SELECT * FROM order_items WHERE order_id = '
         <p><strong>Phone:</strong> <?php echo $order['phone']; ?></p>
         <p><strong>Address:</strong> <?php echo $order['address']; ?></p>
         <p><strong>Payment:</strong> <?php echo $order['notes']; ?></p>
+        <p><strong>Status:</strong> <?php echo ucfirst($order['status']); ?></p>
         <p><strong>Date:</strong> <?php echo $order['created_at']; ?></p>
+
+        <form method="POST" class="status-form">
+            <input type="hidden" name="order_id" value="<?php echo $order['id']; ?>">
+
+            <select name="status" class="status-select">
+                <option value="pending" <?php if ($order['status'] == 'pending') echo 'selected'; ?>>
+                    Pending
+                </option>
+
+                <option value="paid" <?php if ($order['status'] == 'paid') echo 'selected'; ?>>
+                    Paid
+                </option>
+
+                <option value="shipped" <?php if ($order['status'] == 'shipped') echo 'selected'; ?>>
+                    Shipped
+                </option>
+
+                <option value="completed" <?php if ($order['status'] == 'completed') echo 'selected'; ?>>
+                    Completed
+                </option>
+
+                <option value="cancelled" <?php if ($order['status'] == 'cancelled') echo 'selected'; ?>>
+                    Cancelled
+                </option>
+            </select>
+
+            <button type="submit" class="btn update-btn">
+                Update Status
+            </button>
+        </form>
     </div>
 
     <h2>Ordered Items</h2>

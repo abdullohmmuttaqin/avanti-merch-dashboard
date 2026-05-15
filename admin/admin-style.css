@@ -443,9 +443,7 @@ input[type="file"]:focus {
     border-radius: 10px;
 }
 
-/* ============================
-   CRUD BUTTON ACTION
-============================ */
+/* ============================  CRUD BUTTON ACTION  ============================ */
 
 .action-wrap {
     margin-top: 20px;
@@ -502,4 +500,69 @@ input[type="file"]:focus {
 
 .save-btn:hover {
     transform: translateY(-2px);
+}
+
+.status-select {
+    padding: 12px 16px;
+    background: #111;
+    color: white;
+    border: 1px solid #333;
+    border-radius: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.status-form {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.status-select {
+    padding: 12px 16px;
+    background: #111;
+    color: white;
+    border: 1px solid #333;
+    border-radius: 10px;
+    font-size: 15px;
+    min-width: 180px;
+}
+
+.update-btn {
+    border: none;
+    cursor: pointer;
+}
+
+.status-badge {
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.status-pending {
+    background: #5a3e00;
+    color: #ffd166;
+}
+
+.status-paid {
+    background: #003b2f;
+    color: #06d6a0;
+}
+
+.status-shipped {
+    background: #002b5a;
+    color: #4cc9f0;
+}
+
+.status-completed {
+    background: #1f4d1f;
+    color: #90ee90;
+}
+
+.status-cancelled {
+    background: #5a0000;
+    color: #ff6b6b;
 }

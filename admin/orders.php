@@ -2,7 +2,20 @@
 include '../config/database.php';
 /** @var mysqli $conn */
 
-$query = mysqli_query($conn, "SELECT * FROM orders ORDER BY id DESC");
+$status_filter = isset($_GET['status']) ? $_GET['status'] : 'all';
+
+if ($status_filter == 'all') {
+    $query = mysqli_query($conn, "
+        SELECT * FROM orders
+        ORDER BY id DESC
+    ");
+} else {
+    $query = mysqli_query($conn, "
+        SELECT * FROM orders
+        WHERE status = '$status_filter'
+        ORDER BY id DESC
+    ");
+}
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +35,7 @@ $query = mysqli_query($conn, "SELECT * FROM orders ORDER BY id DESC");
         }
 
         h1 {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             color: #ff4d4d;
         }
 
@@ -58,12 +71,62 @@ $query = mysqli_query($conn, "SELECT * FROM orders ORDER BY id DESC");
             text-decoration: none;
             display: inline-block;
         }
+
+        .status-badge {
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .status-pending {
+            background: #5a3e00;
+            color: #ffd166;
+        }
+
+        .status-paid {
+            background: #003b2f;
+            color: #06d6a0;
+        }
+
+        .status-shipped {
+            background: #002b5a;
+            color: #4cc9f0;
+        }
+
+        .status-completed {
+            background: #1f4d1f;
+            color: #90ee90;
+        }
+
+        .status-cancelled {
+            background: #5a0000;
+            color: #ff6b6b;
+        }
+
+        select {
+            padding: 10px 14px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
     </style>
 </head>
 
 <body>
 
     <h1>Orders Dashboard</h1>
+
+    <form method="GET">
+        <select name="status" onchange="this.form.submit()">
+            <option value="all" <?php if ($status_filter == 'all') echo 'selected'; ?>>All Orders</option>
+            <option value="pending" <?php if ($status_filter == 'pending') echo 'selected'; ?>>Pending</option>
+            <option value="paid" <?php if ($status_filter == 'paid') echo 'selected'; ?>>Paid</option>
+            <option value="shipped" <?php if ($status_filter == 'shipped') echo 'selected'; ?>>Shipped</option>
+            <option value="completed" <?php if ($status_filter == 'completed') echo 'selected'; ?>>Completed</option>
+            <option value="cancelled" <?php if ($status_filter == 'cancelled') echo 'selected'; ?>>Cancelled</option>
+        </select>
+    </form>
 
     <table>
         <thead>
@@ -88,7 +151,13 @@ $query = mysqli_query($conn, "SELECT * FROM orders ORDER BY id DESC");
                     <td><?php echo $order['email']; ?></td>
                     <td><?php echo $order['phone']; ?></td>
                     <td><?php echo $order['notes']; ?></td>
-                    <td><?php echo ucfirst($order['status']); ?></td>
+
+                    <td>
+                        <span class="status-badge status-<?php echo $order['status']; ?>">
+                            <?php echo ucfirst($order['status']); ?>
+                        </span>
+                    </td>
+
                     <td>Rp<?php echo number_format($order['total'], 0, ',', '.'); ?></td>
                     <td><?php echo $order['created_at']; ?></td>
                     <td>

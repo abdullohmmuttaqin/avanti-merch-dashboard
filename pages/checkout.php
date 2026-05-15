@@ -1,6 +1,7 @@
 <?php
 session_start();
 include '../config/database.php';
+/** @var mysqli $conn */
 
 if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
     header("Location: cart.php");
