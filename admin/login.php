@@ -1,6 +1,7 @@
 <?php
 session_start();
 include '../config/database.php';
+/** @var mysqli $conn */
 
 if (isset($_POST['login'])) {
 

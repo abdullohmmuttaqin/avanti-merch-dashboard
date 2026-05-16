@@ -7,6 +7,7 @@ if (!isset($_SESSION['admin_login'])) {
 }
 
 include '../config/database.php';
+/** @var mysqli $conn */
 
 /* TAMBAH PRODUK */
 if (isset($_POST['simpan'])) {

@@ -7,6 +7,7 @@ if (!isset($_SESSION['admin_login'])) {
 }
 
 include '../config/database.php';
+/** @var mysqli $conn */
 
 $id = $_GET['id'];
 $data = mysqli_query($conn, "SELECT * FROM products WHERE id='$id'");
