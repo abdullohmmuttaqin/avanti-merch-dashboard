@@ -9,6 +9,30 @@ if (!isset($_SESSION['admin_login'])) {
 include '../config/database.php';
 /** @var mysqli $conn */
 
+$total_products = mysqli_fetch_assoc(
+    mysqli_query($conn, "SELECT COUNT(*) as total FROM products")
+)['total'];
+
+$total_orders = mysqli_fetch_assoc(
+    mysqli_query($conn, "SELECT COUNT(*) as total FROM orders")
+)['total'];
+
+$pending_orders = mysqli_fetch_assoc(
+    mysqli_query($conn, "SELECT COUNT(*) as total FROM orders WHERE status = 'pending'")
+)['total'];
+
+$completed_orders = mysqli_fetch_assoc(
+    mysqli_query($conn, "SELECT COUNT(*) as total FROM orders WHERE status = 'completed'")
+)['total'];
+
+$total_revenue = mysqli_fetch_assoc(
+    mysqli_query($conn, "SELECT SUM(total) as revenue FROM orders WHERE status = 'completed'")
+)['revenue'];
+
+if (!$total_revenue) {
+    $total_revenue = 0;
+}
+
 /* TAMBAH PRODUK */
 if (isset($_POST['simpan'])) {
 
@@ -83,21 +107,33 @@ $jumlah_produk = mysqli_num_rows($semua_produk);
                 <p>Kelola seluruh produk merchandise dari satu tempat.</p>
             </div>
 
-            <div class="quick-stats">
-                <div class="stat-mini">
-                    <h3>Total Produk</h3>
-                    <h1><?php echo $jumlah_produk; ?></h1>
+            <div class="dashboard-cards">
+
+                <div class="card">
+                    <h3>Total Products</h3>
+                    <p><?php echo $total_products; ?></p>
                 </div>
 
-                <div class="stat-mini">
-                    <h3>Database</h3>
-                    <h1>ON</h1>
+                <div class="card">
+                    <h3>Total Orders</h3>
+                    <p><?php echo $total_orders; ?></p>
                 </div>
 
-                <div class="stat-mini">
-                    <h3>Status Admin</h3>
-                    <h1>LIVE</h1>
+                <div class="card">
+                    <h3>Pending Orders</h3>
+                    <p><?php echo $pending_orders; ?></p>
                 </div>
+
+                <div class="card">
+                    <h3>Completed Orders</h3>
+                    <p><?php echo $completed_orders; ?></p>
+                </div>
+
+                <div class="card">
+                    <h3>Total Revenue</h3>
+                    <p>Rp<?php echo number_format($total_revenue, 0, ',', '.'); ?></p>
+                </div>
+
             </div>
 
             <div class="top-grid">
