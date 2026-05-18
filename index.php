@@ -128,29 +128,41 @@ $latest_produk = mysqli_query($conn, "
         </form>
 
         <div class="product-grid">
-            <?php while ($product = mysqli_fetch_assoc($query2)) : ?>
-                <div class="card">
-                    <div class="img-box">
-                        <img src="assets/images/<?php echo $product['gambar']; ?>" alt="">
+            <?php if (mysqli_num_rows($query2) > 0) : ?>
+
+                <?php while ($product = mysqli_fetch_assoc($query2)) : ?>
+                    <div class="card">
+
+                        <div class="img-box">
+                            <img src="assets/images/<?php echo $product['gambar']; ?>" alt="">
+                        </div>
+
+                        <div class="card-body">
+                            <h3><?php echo $product['nama_produk']; ?></h3>
+
+                            <p class="price">
+                                Rp<?php echo number_format($product['harga'], 0, ',', '.'); ?>
+                            </p>
+
+                            <span class="tag">
+                                <?php echo $product['kategori']; ?>
+                            </span>
+
+                            <a href="pages/product.php?id=<?php echo $product['id']; ?>" class="btn">
+                                Buy Now
+                            </a>
+                        </div>
+
                     </div>
+                <?php endwhile; ?>
 
-                    <div class="card-body">
-                        <h3><?php echo $product['nama_produk']; ?></h3>
+            <?php else : ?>
 
-                        <p class="price">
-                            Rp<?php echo number_format($product['harga'], 0, ',', '.'); ?>
-                        </p>
+                <p class="empty-text">
+                    No products found.
+                </p>
 
-                        <span class="tag">
-                            <?php echo $product['kategori']; ?>
-                        </span>
-
-                        <a href="pages/product.php?id=<?php echo $product['id']; ?>" class="btn">
-                            Buy Now
-                        </a>
-                    </div>
-                </div>
-            <?php endwhile; ?>
+            <?php endif; ?>
         </div>
     </section>
 

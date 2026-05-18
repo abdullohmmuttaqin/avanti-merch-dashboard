@@ -611,3 +611,11 @@ footer h3 {
 .search-input:focus {
     border-color: #ff4d4d;
 }
+
+.empty-text {
+    text-align: center;
+    width: 100%;
+    color: #888;
+    font-size: 18px;
+    margin-top: 30px;
+}
