@@ -37,9 +37,9 @@ This project is developed as a complete web-based merchandise selling platform f
 ## Development Status
 
 - [x] Repository Setup
-- [ ] XAMPP Environment Setup
-- [ ] Frontend Shop UI
-- [ ] Database Configuration
-- [ ] Shopping Cart System
-- [ ] Admin Dashboard
+- [x] XAMPP Environment Setup
+- [x] Frontend Shop UI
+- [x] Database Configuration
+- [x] Shopping Cart System
+- [x] Admin Dashboard
 - [ ] Final Deployment
