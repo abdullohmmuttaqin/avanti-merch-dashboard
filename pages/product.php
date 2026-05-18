@@ -44,9 +44,7 @@ if (isset($_POST['add_to_cart'])) {
 <?php include '../includes/header.php'; ?>
 <?php include '../includes/navbar.php'; ?>
 
-<section class="section">
-
-    <h2>Product Detail</h2>
+<section class="section product-page">
 
     <div class="product-detail">
 
@@ -55,25 +53,43 @@ if (isset($_POST['add_to_cart'])) {
         </div>
 
         <div class="product-info">
-            <h1><?php echo $product['nama_produk']; ?></h1>
+
+            <span class="product-tag">
+                <?php echo $product['kategori']; ?>
+            </span>
+
+            <h1>
+                <?php echo $product['nama_produk']; ?>
+            </h1>
 
             <p class="price">
                 Rp<?php echo number_format($product['harga'], 0, ',', '.'); ?>
             </p>
+            <p class="stock">Stock Available</p>
 
             <p class="description">
                 Premium underground merchandise from AVANTI MERCH.
-                Built for punk rock, hardcore culture, and limited streetwear drops.
+                Built for punk rock culture, hardcore scenes,
+                and limited streetwear drops with authentic design identity.
             </p>
 
+            <div class="qty-box">
+                <label>Quantity</label>
+                <input type="number" value="1" min="1">
+            </div>
+
             <div class="product-actions">
+
                 <form method="POST">
                     <button type="submit" name="add_to_cart" class="btn">
                         Add To Cart
                     </button>
                 </form>
 
-                <a href="cart.php" class="btn">View Cart</a>
+                <a href="cart.php" class="btn secondary-btn">
+                    View Cart
+                </a>
+
             </div>
 
         </div>
