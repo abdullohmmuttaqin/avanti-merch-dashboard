@@ -1,8 +1,26 @@
 <?php
 include 'config/database.php';
 
-$all_produk = mysqli_query($conn, "SELECT * FROM products ORDER BY id DESC LIMIT 8");
-$latest_produk = mysqli_query($conn, "SELECT * FROM products ORDER BY id DESC LIMIT 4");
+$keyword = isset($_GET['search']) ? $_GET['search'] : '';
+
+if ($keyword != '') {
+    $query2 = mysqli_query($conn, "
+        SELECT * FROM products
+        WHERE nama_produk LIKE '%$keyword%'
+        ORDER BY id DESC
+    ");
+} else {
+    $query2 = mysqli_query($conn, "
+        SELECT * FROM products
+        ORDER BY id DESC
+    ");
+}
+
+$latest_produk = mysqli_query($conn, "
+    SELECT * FROM products
+    ORDER BY id DESC
+    LIMIT 4
+");
 ?>
 
 <!DOCTYPE html>
@@ -96,8 +114,21 @@ $latest_produk = mysqli_query($conn, "SELECT * FROM products ORDER BY id DESC LI
     <section class="section" id="shop">
         <h2>All Merchandise</h2>
 
+        <form method="GET" class="search-form">
+            <input
+                type="text"
+                name="search"
+                placeholder="Search merchandise..."
+                value="<?php echo $keyword; ?>"
+                class="search-input">
+
+            <button type="submit" class="btn">
+                Search
+            </button>
+        </form>
+
         <div class="product-grid">
-            <?php while ($product = mysqli_fetch_assoc($all_produk)) : ?>
+            <?php while ($product = mysqli_fetch_assoc($query2)) : ?>
                 <div class="card">
                     <div class="img-box">
                         <img src="assets/images/<?php echo $product['gambar']; ?>" alt="">
