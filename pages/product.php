@@ -22,17 +22,20 @@ if (!$product) {
 if (isset($_POST['add_to_cart'])) {
 
     $product_id = $product['id'];
+    $qty = $_POST['qty'];
 
     if (isset($_SESSION['cart'][$product_id])) {
-        $_SESSION['cart'][$product_id]['qty'] += 1;
+
+        $_SESSION['cart'][$product_id]['qty'] += $qty;
     } else {
+
         $_SESSION['cart'][$product_id] = [
             'id' => $product['id'],
             'nama' => $product['nama_produk'],
             'harga' => $product['harga'],
             'gambar' => $product['gambar'],
             'kategori' => $product['kategori'],
-            'qty' => 1
+            'qty' => $qty
         ];
     }
 
@@ -75,7 +78,12 @@ if (isset($_POST['add_to_cart'])) {
 
             <div class="qty-box">
                 <label>Quantity</label>
-                <input type="number" value="1" min="1">
+                <input
+                    type="number"
+                    name="qty"
+                    value="1"
+                    min="1"
+                    class="qty-input">
             </div>
 
             <div class="product-actions">
