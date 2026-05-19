@@ -12,6 +12,12 @@ $id = $_GET['id'];
 
 $query = mysqli_query($conn, "SELECT * FROM products WHERE id='$id'");
 $product = mysqli_fetch_assoc($query);
+$related = mysqli_query($conn, "
+    SELECT * FROM products
+    WHERE id != '$id'
+    ORDER BY RAND()
+    LIMIT 4
+");
 
 if (!$product) {
     header("Location: ../index.php");
@@ -101,6 +107,44 @@ if (isset($_POST['add_to_cart'])) {
             </div>
 
         </div>
+
+    </div>
+
+</section>
+
+<section class="related-section">
+
+    <h2>You May Also Like</h2>
+
+    <div class="product-grid">
+
+        <?php while ($item = mysqli_fetch_assoc($related)) : ?>
+
+            <div class="card">
+
+                <div class="img-box">
+                    <img src="../assets/images/<?php echo $item['gambar']; ?>" alt="">
+                </div>
+
+                <div class="card-body">
+
+                    <h3>
+                        <?php echo $item['nama_produk']; ?>
+                    </h3>
+
+                    <p class="price">
+                        Rp<?php echo number_format($item['harga'], 0, ',', '.'); ?>
+                    </p>
+
+                    <a href="product.php?id=<?php echo $item['id']; ?>" class="btn">
+                        View Product
+                    </a>
+
+                </div>
+
+            </div>
+
+        <?php endwhile; ?>
 
     </div>
 

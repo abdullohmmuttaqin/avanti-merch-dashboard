@@ -717,3 +717,14 @@ footer h3 {
 .product-image:hover img {
     transform: scale(1.05);
 }
+
+.related-section {
+    padding: 55px 70px;
+    background: #050505;
+}
+
+.related-section h2 {
+    font-size: 42px;
+    font-weight: 900;
+    margin-bottom: 28px;
+}
